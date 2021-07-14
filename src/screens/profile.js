@@ -5,7 +5,11 @@ import {
   StyleSheet,
   Button,
   Dimensions,
- FlatList, TouchableOpacity, Image, TextInput
+ FlatList,
+TouchableOpacity,
+ Image,
+  TextInput,
+	TouchableHighlight
 } from 'react-native';
 import {  Header } from 'react-native-elements';
 import champions from './champions';
@@ -14,6 +18,13 @@ import { AntDesign } from '@expo/vector-icons';
 var {width, height} = Dimensions.get('window')
 import { Fontisto } from '@expo/vector-icons';  
 import MenuDrawer from 'react-native-side-drawer'
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
 const colors = {
   white: 'white',
 };
@@ -92,6 +103,7 @@ import M6 from "../../assets/M6.png";
 import M7 from "../../assets/M7.png";
 import elos from "../../assets/elos.png";
 import bau from "../../assets/bau.png";
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default class profile extends React.Component {
 	constructor(props){
@@ -123,67 +135,98 @@ export default class profile extends React.Component {
 	  drawerContent = () => {
 		const { navigation } = this.props.navigation;
 		return (
-		 <View>
-		 <TouchableOpacity onPress={(event) => {const { navigate } = this.props.navigation; navigate('itens')}} style={styles.animatedBox}>
-			<Text style={{fontSize:30}}>Itens</Text>	
+		 <ScrollView>
+			  <TouchableOpacity activeOpacity={.9} onPress={(event) => {const { navigate } = this.props.navigation; navigate('runas')}} style={styles.animatedBox}>
+			<Text style={{fontSize:20}}>Runas</Text>	
 			<View style={{flexDirection:"row"}}>
-		    <Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7011.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7022.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7021.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7020.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7019.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7018.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
+		    <Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Domination/DarkHarvest/DarkHarvest.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Domination/Predator/Predator.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Inspiration/MasterKey/MasterKey.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Inspiration/GlacialAugment/GlacialAugment.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Inspiration/UnsealedSpellbook/UnsealedSpellbook.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
 			</View>
 			<View style={{flexDirection:"row"}}>
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7017.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7016.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7015.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7014.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7013.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/item/7012.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Precision/Conqueror/Conqueror.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Precision/FleetFootwork/FleetFootwork.png` }} style={{height: 15, width: 20, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Precision/LethalTempo/LethalTempoTemp.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Sorcery/ArcaneComet/ArcaneComet.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Sorcery/SummonAery/SummonAery.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.bangingheads.net/cdn/img/perk-images/Styles/Sorcery/PhaseRush/PhaseRush.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			</View>		
+		  </TouchableOpacity>
+		 <TouchableOpacity activeOpacity={.9} onPress={(event) => {const { navigate } = this.props.navigation; navigate('itens')}} style={styles.animatedBox}>
+			<Text style={{fontSize:20}}>Itens</Text>	
+			<View style={{flexDirection:"row"}}>
+		    <Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7011.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7022.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7021.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7020.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7019.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7018.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			</View>
+			<View style={{flexDirection:"row"}}>
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7017.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7016.png` }} style={{height: 15, width: 20, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7015.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7014.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7013.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/item/7012.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
 			</View>		
 		  </TouchableOpacity>
 		   
-		   <TouchableOpacity onPress={(event) => {const { navigate } = this.props.navigation; navigate('spells')}} style={styles.animatedBox}>
-		   <Text style={{fontSize:30}}>Feitiços de invocador</Text>
+		   <TouchableOpacity activeOpacity={.9} onPress={(event) => {const { navigate } = this.props.navigation; navigate('spells')}} style={styles.animatedBox}>
+		   <Text style={{fontSize:20}}>Feitiços de invocador</Text>
 		   <View style={{flexDirection:"row"}}>
-		    <Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerFlash.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerBarrier.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerBoost.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerDot.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerExhaust.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerHaste.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
+		    <Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerFlash.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerBarrier.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerBoost.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerDot.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerExhaust.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerHaste.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
 			</View>
 			<View style={{flexDirection:"row"}}>
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerHeal.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerMana.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerPoroRecall.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerSmite.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerSnowball.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/SummonerTeleport.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerHeal.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerMana.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerPoroRecall.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerSmite.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerSnowball.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/SummonerTeleport.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
 			</View>
 			 </TouchableOpacity>
 
-			 <TouchableOpacity onPress={(event) => {const { navigate } = this.props.navigation; navigate('home')}} style={styles.animatedBox}>
-		   <Text style={{fontSize:30}}>Campeões</Text>
+			 <TouchableOpacity activeOpacity={.9} onPress={(event) => {const { navigate } = this.props.navigation; navigate('home')}} style={styles.animatedBox}>
+		   <Text style={{fontSize:20}}>Campeões</Text>
 		   <View style={{flexDirection:"row"}}>
-		    <Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Kled.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Shen.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Quinn.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Urgot.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Yorick.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/MonkeyKing.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
+		    <Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Kled.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Shen.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Quinn.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Urgot.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Yorick.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/MonkeyKing.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
 			</View>
 			<View style={{flexDirection:"row"}}>
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Swain.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Chogath.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Nasus.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Zilean.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Illaoi.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
-			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.12.1/img/champion/Aatrox.png` }} style={{height: 20, width: 20, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Swain.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Chogath.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Nasus.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Zilean.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Illaoi.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
+			<Image source={{uri:`http://ddragon.leagueoflegends.com/cdn/11.14.1/img/champion/Aatrox.png` }} style={{height: 15, width: 15, borderRadius: 60}} />
 			</View>
 			 </TouchableOpacity>
-		 </View>
+			 <TouchableOpacity activeOpacity={.9} onPress={(event) => {const { navigate } = this.props.navigation; navigate('topC')}} style={styles.animatedBox}>
+		   <Text style={{fontSize:20}}>Os melhores do desafiante</Text>		  
+			<Image source={challenger} style={{height: 30, width: 30, borderRadius: 60}} />		
+			 </TouchableOpacity>
+			 <TouchableOpacity activeOpacity={.9} onPress={(event) => {const { navigate } = this.props.navigation; navigate('topGM')}} style={styles.animatedBox}>
+		   <Text style={{fontSize:20}}>Os melhores do grâo mestre</Text>		  
+			<Image source={grandmaster} style={{height: 30, width: 30, borderRadius: 60}} />		
+			 </TouchableOpacity>
+			 <TouchableOpacity activeOpacity={.9} onPress={(event) => {const { navigate } = this.props.navigation; navigate('topM')}} style={styles.animatedBox}>
+		   <Text style={{fontSize:20}}>Os melhores do mestre</Text>		  
+			<Image source={master} style={{height: 30, width: 30, borderRadius: 60}} />		
+			 </TouchableOpacity>
+		 </ScrollView>
 		);
 	  };
 
@@ -191,6 +234,19 @@ export default class profile extends React.Component {
     Dimensions.addEventListener('change', ({ window }) => {
       this.setState({ width: window.width });
     });
+	async function loadAd(){
+		await AdMobInterstitial.setAdUnitID('ca-app-pub-4654651969138945/5626937753');
+	   InterstitalAd();
+	}
+	   loadAd(); 
+	 [];
+	 async function InterstitalAd(){
+		await AdMobInterstitial.requestAdAsync()
+		await AdMobInterstitial.showAdAsync()
+	 }		
+	 async function showInterstitial() {
+		AdMobInterstitial.requestAd(() => AdMobInterstitial.showAd());
+	  }
   }
 
   setCurrentTab(index) {
@@ -201,7 +257,7 @@ export default class profile extends React.Component {
   }
 
   _handlePress4(){
-	fetch(`https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/${this.state.accountId}?api_key=APIKEY`)
+	fetch(`https://br1.api.riotgames.com/lol/match/v4/matchlists/by-account/${this.state.accountId}?api_key=RGAPI-4d66b037-2cd4-4de8-8486-2fcdfcbf0be0`)
     .then(response => response.json())
     .then((responseJson)=> {
       this.setState({
@@ -212,7 +268,7 @@ export default class profile extends React.Component {
 
 }
   _handlePress3(){
-	 fetch(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${this.state.text}?api_key=APIKEY`)
+	 fetch(`https://br1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${this.state.text}?api_key=RGAPI-4d66b037-2cd4-4de8-8486-2fcdfcbf0be0`)
 	.then((response) => response.json())
 	.then((responseJson) => {
 		this.state.profileIconId = responseJson.profileIconId;
@@ -247,7 +303,7 @@ export default class profile extends React.Component {
 
 }
 _handlePress2(){
-	fetch(`https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${this.state.id}?api_key=APIKEY`)
+	fetch(`https://br1.api.riotgames.com/lol/league/v4/entries/by-summoner/${this.state.id}?api_key=RGAPI-4d66b037-2cd4-4de8-8486-2fcdfcbf0be0`)
     .then(response => response.json())
     .then((responseJson)=> {
       this.setState({
@@ -258,7 +314,7 @@ _handlePress2(){
 
 }
 _handlePress(){
-	fetch(`https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.state.id}?api_key=APIKEY`)
+	fetch(`https://br1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${this.state.id}?api_key=RGAPI-4d66b037-2cd4-4de8-8486-2fcdfcbf0be0`)
     .then(response => response.json())
     .then((responseJson)=> {
       this.setState({
@@ -554,7 +610,7 @@ _renderItem3 = ({item}) => {
           drawerPercentage={50}
           animationTime={250}
           overlay={true}
-          opacity={0.4}/>  
+          opacity={1}/>  
          <TextInput 
 			style={styles.container} 
 					placeholder="Digite o nome do jogador"
@@ -565,7 +621,7 @@ _renderItem3 = ({item}) => {
 				<AntDesign name="arrowright" size={24} color="white" />
 				</TouchableOpacity>
 				</View>
-				<Image style={{height: 100, width: 100, borderRadius: 100, paddingBottom:10}} source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/profileicon/${this.state.profileIconId}.png` }} />
+				<Image style={{height: 100, width: 100, borderRadius: 100, paddingBottom:10}} source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/profileicon/${this.state.profileIconId}.png` }} />
 				<Text style={styles.text} >{this.state.name}</Text>
 				<Text style={styles.text} >{this.state.summonerLevel}</Text>				
 				<TouchableOpacity  style={{ alignItems:'center', borderColor: 'white', borderWidth: 2}} onPress={() => {this._handlePress(); this._handlePress2(); this._handlePress4()}}>

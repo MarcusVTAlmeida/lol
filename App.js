@@ -13,7 +13,11 @@ import profile from "./src/screens/profile";
 import spellsDetalhes from "./src/screens/spellsDetalhes";
 import spells from "./src/screens/spells";
 import runas from "./src/screens/runas";
+import freeWeek from "./src/screens/freeWeek";
 import runasDetalhes from "./src/screens/runasDetalhes";
+import topC from "./src/screens/topC";
+import topM from "./src/screens/topM";
+import topGM from "./src/screens/topGM";
 
  //Define your routes using createStackNavigator, which will be a object full of options. 
  const AppNavigator = createStackNavigator({
@@ -27,7 +31,11 @@ import runasDetalhes from "./src/screens/runasDetalhes";
      spells: {screen: spells },
      runasDetalhes: {screen: runasDetalhes },
      runas: {screen: runas },
-   },
+     freeWeek: {screen: freeWeek },
+     topC: {screen: topC },
+     topM: {screen: topM },
+     topGM: {screen: topGM },
+   }, 
    {
      initialRouteName:  'profile',
     

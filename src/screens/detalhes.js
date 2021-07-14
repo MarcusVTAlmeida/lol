@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
-import { ScrollView, Image, Text, View, FlatList  } from 'react-native'
+import { ScrollView, Image, Text, View, FlatList , StyleSheet } from 'react-native'
 import { Card } from 'react-native-elements'
 import Carousel from 'react-native-snap-carousel';
-
+import {
+  AdMobBanner,
+  AdMobInterstitial,
+  PublisherBanner,
+  AdMobRewarded,
+  setTestDeviceIDAsync,
+} from 'expo-ads-admob';
+import HTMLView from 'react-native-htmlview';
 
 export default class detalhes extends React.PureComponent {
   static navigationOptions = {
@@ -27,12 +34,15 @@ _renderItem = ({item}) => {
       <View style={{  justifyContent:'center', alignContent:'center', paddingTop:10}}>
         <View style={{ justifyContent:'center', alignContent:'center', alignItems:'center'}}>
         <Text style={{ color:'white', paddingTop:5}}>{ item.name }</Text>            
-        <Image  style={{height: 80, width: 80, borderRadius: 80}} source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/${item.id}.png` }} />
+        <Image  style={{height: 80, width: 80, borderRadius: 80}} source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.14.1/img/spell/${item.id}.png` }} />
         </View>
         <Text style={{ color:'white', paddingTop:5}}>{`Descrição: ${item.description}`}</Text>  
         <Text style={{ color:'white', paddingTop:5}}>Tempo de recarga: { item.cooldownBurn  }</Text>
         <Text style={{ color:'white', paddingTop:5}}>Custo: { item.costBurn }</Text>  
-             
+        <HTMLView 
+        value={"<div><p><a href='http://jsdf.co'>"+item.tooltip+"</a></p></div>"}
+        stylesheet={styles}
+      /> 
                </View>
   );
 }
@@ -131,8 +141,21 @@ _renderItem = ({item}) => {
           <Text style={{ color:'white'}}>Regeneração de mana por nível: {category.stats.mpregenperlevel}</Text>
           <Text style={{ color:'white'}}>Resistência mágica: {category.stats.spellblock}</Text>
           <Text style={{ color:'white'}}>Resistência mágica por nível: {category.stats.spellblockperlevel}</Text>
- </Card>              
+ </Card>    
+ <View style={{ justifyContent:'center', alignContent:'center', alignItems:'center'}}>     
+ <AdMobBanner
+  bannerSize="banner"
+  adUnitID="ca-app-pub-4654651969138945/7880925372" 
+  servePersonalizedAds // true or false
+   />      
+   </View>
 </ScrollView>
         );
     }
 }
+const styles = StyleSheet.create({
+  a: {
+    fontWeight: '300',
+    color: 'white', // make links coloured pink
+  },
+});

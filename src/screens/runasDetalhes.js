@@ -1,22 +1,59 @@
 import React, { Component } from 'react'
-import { Image, Text, View, FlatList} from 'react-native'
+import { Image, Text, View, FlatList, ScrollView, StyleSheet} from 'react-native'
 import { Card } from 'react-native-elements'
-
+import HTMLView from 'react-native-htmlview';
+import {
+    AdMobBanner,
+    AdMobInterstitial,
+    PublisherBanner,
+    AdMobRewarded,
+    setTestDeviceIDAsync,
+  } from 'expo-ads-admob';
 export default class runasDetalhes extends React.PureComponent {
-    _renderItem = ({item}) => {     
+    static navigationOptions = {
+        headerTitle: 'Detalhes das runas',
+        };
+    _renderItem = ({item}) => { 
+        console.log(item)     
         return  (   
-            <View style={{backgroundColor: 'black'}}>    
-          <Image style={{height: 80, width: 80, borderRadius: 60}} source={{uri:`https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/${item.id}.png` }} />
-               <View style={{flexDirection:"column"}}> 
-               <Text style={{marginLeft: 10, color:'white'}}>{item.runes.icon}</Text>                
-                </View>         
-                </View>           
+            <ScrollView style={{backgroundColor: 'black'}}>    
+                <FlatList 
+                data={item.runes}
+                renderItem={this._renderItem2}
+                keyExtractor={(item) => item.id}
+                ItemSeparatorComponent={()=>
+                    <View style={{height:5 , backgroundColor: 'gray'}}  
+                />}
+                
+                
+            />         
+                </ScrollView >           
         )
-    }
+    } 
+    _renderItem2 = ({item}) => { 
+        
+        console.log(item.icon )
+        return  (   
+            <ScrollView style={{backgroundColor: 'black'}}>  
+             <View style={{ justifyContent:'center', alignContent:'center', alignItems:'center', paddingTop:20, paddingBottom:20}}>  
+          <Image style={{height: 80, width: 80, borderRadius: 60}} source={{uri:`https://ddragon.bangingheads.net/cdn/img/${item.icon}` }} />
+              
+               <Text style={{color:'white', fontSize:20}}>{item.name}</Text>  
+               <View style={{ paddingLeft:10, paddingRight:10}}> 
+               <HTMLView 
+        value={"<div><p><a href='http://jsdf.co'>"+item.longDesc+"</a></p></div>"}
+        stylesheet={styles}
+      /> 
+       </View>
+                  </View>  
+                </ScrollView >           
+        )
+    } 
     render() {          
-        const category = this.props.navigation.state.params.category          
+        const category = this.props.navigation.state.params.category  
+               
         return (
-            <View style={{ backgroundColor: '#800000'}}>               
+            <ScrollView style={{ backgroundColor: '#800000'}}>               
 <Card containerStyle={{backgroundColor: 'black'}}>
   <View style={{ justifyContent:'center', alignContent:'center', alignItems:'center'}}>             
   <Card.Title style={{ color: '#b22222'}}>{category.name}</Card.Title>
@@ -27,21 +64,30 @@ export default class runasDetalhes extends React.PureComponent {
                 renderItem={this._renderItem}
                 keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={()=>
-                    <View style={{height:1, backgroundColor: '#f7f7f7'}} 
+                    <View style={{height:30 , backgroundColor: 'gray'}} 
                 />}
+                
             /> 
-<Card.Image style={{height: 100, width: 100}} source={{ uri: `https://ddragon.leagueoflegends.com/cdn/11.13.1/img/spell/${category.id}.png` }}>  
-</Card.Image>
+
 </View>
 <Card.Divider/> 
-         <Text style={{ color:'white'}}>Tempo de recarga: {category.cooldownBurn}</Text>
-         <Card.Divider/>
-         <Text style={{ color:'white'}}>Habilitada no nível: {category.summonerLevel}</Text>
-         <Card.Divider/> 
-         <Text style={{ color:'white'}}>Alcance: {category.rangeBurn}</Text> 
-         <Card.Divider/> 
-       </Card>              
-</View>
+        
+       </Card> 
+       <View style={{ justifyContent:'center', alignContent:'center', alignItems:'center', flex:1}}> 
+                <AdMobBanner
+  bannerSize="banner"
+  adUnitID="ca-app-pub-4654651969138945/5466794264" 
+  servePersonalizedAds // true or false
+   />            
+   </View>               
+</ScrollView>
         );
     }
 }
+const styles = StyleSheet.create({
+    a: {
+      fontWeight: '300',
+      color: 'white', 
+      // make links coloured pink
+    },
+  });
